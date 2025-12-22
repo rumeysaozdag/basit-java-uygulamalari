@@ -1,3 +1,4 @@
+// Bu proje günlük harcamaları takip etmek için yazılmıştır.
 package javaDenemesi.kosullar;
 
 import java.util.Scanner;
