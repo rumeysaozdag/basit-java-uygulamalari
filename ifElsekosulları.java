@@ -1,3 +1,4 @@
+//İF/else Koşulları çalışması
 package javaDenemesi.kosullar;
 import java.util.Scanner;
 public class ifElsekosulları {
