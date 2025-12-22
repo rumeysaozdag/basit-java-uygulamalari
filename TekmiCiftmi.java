@@ -1,3 +1,4 @@
+//Sayıların tek mi çift mi olduğunu bulan program.
 package javaDenemesi.kosullar;
 
 import java.util.Scanner;
