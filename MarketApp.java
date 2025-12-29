@@ -11,11 +11,12 @@ public class MarketApp {
 		
 		Scanner scan = new Scanner(System.in);
 		
-		MarketManager yonetici = new MarketManager();
+		
 		
 		boolean devamEdiyor = true;
 		
 		System.out.println("===  Profesyonel Market Sistemi ===");
+		MarketManager yonetici = new MarketManager();
 		while(devamEdiyor) {
 			System.out.println("\n1. Listele | 2. Ekle | 3. Çıkar | 4. Çıkış");
 			System.out.print("Seçiminiz: ");
@@ -23,7 +24,7 @@ public class MarketApp {
 			scan.nextLine(); //Enter hatasını temizliyor
 			
 			if(secim==1) {
-				ArrayList<String> gelenListe= yonetici.listeyiGetir();
+				ArrayList<Urun> gelenListe= yonetici.listeyiGetir();
 				
 				if(gelenListe.isEmpty()) {
 					System.out.println(" Liste şu an boş.");
@@ -37,27 +38,41 @@ public class MarketApp {
 			
 			else if(secim==2) {
 				System.out.print("Ürün adı: ");
-				String urun = scan.nextLine();
+				String ad = scan.nextLine();
 				
-				yonetici.urunEkle(urun);
-				System.out.println( urun + " başarıyla eklendi.");
+				System.out.print("Fiyatı (Örn: 25,50): ");
+                double fiyat = scan.nextDouble();
+                scan.nextLine(); // DİKKAT: Sayıdan sonra yazıya geçerken bunu koymazsan hata verir!
+                
+                // Yöneticiye hem adı hem fiyatı veriyoruz
+                yonetici.urunEkle(ad, fiyat);
+                System.out.println("✅ " + ad + " rafa koyuldu.");
 			}
 			
 			else if (secim==3) {
 				
-				System.out.println("Mevcut Liste: " + yonetici.listeyiGetir());
+				System.out.println("--- Silinecek Ürünü Seçin ---");
 				
-				System.out.print("Silinecek sıra numarası (index): ");
+
+				ArrayList<Urun> liste = yonetici.listeyiGetir();
+				for(int i=0; i<liste.size(); i++) {
+                    System.out.println(i + ". " + liste.get(i));
+                }
+				
+				System.out.print("Sıra Numarası: ");
 				int silinecekIndex = scan.nextInt();
+				scan.nextLine();
 				
 				String sonuc = yonetici.urunSil(silinecekIndex);
 				
-				if(sonuc != null) {
-					System.out.println(sonuc + " listeden atıldı.");
-				}else {
-					System.out.println(" Hata: Geçersiz numara!");
-				}
-			}
+				if (sonuc != null) {
+                    System.out.println("❌ " + sonuc + " çöpe atıldı.");
+                } else {
+                    System.out.println("⚠️ Geçersiz numara!");
+                }
+            }
+				
+			
 			
 			else if (secim==4) {
 				devamEdiyor = false;

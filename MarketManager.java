@@ -4,22 +4,23 @@ import java.util.ArrayList;
 
 public class MarketManager {
 
-	private ArrayList<String> urunler = new ArrayList<>();
+	private ArrayList<Urun> urunler = new ArrayList<>();
 	
-	public void urunEkle(String urun) {
-		urunler.add(urun);
+	public void urunEkle(String ad, double fiyat) {
+		Urun yeniUrun = new Urun(ad, fiyat);
+		urunler.add(yeniUrun);
 	}
 	
-	public ArrayList<String> listeyiGetir(){
+	public ArrayList<Urun> listeyiGetir(){
 		return urunler;
 	}
 	
 	public String urunSil(int index) {
 		if(index >= 0 && index<urunler.size() ) {
 			
-			String silinen = urunler.get(index);
+			Urun silinenUrun = urunler.get(index);
 			urunler.remove(index);
-			return silinen;
+			return silinenUrun.toString();
 			
 		}else {
 			return null;
