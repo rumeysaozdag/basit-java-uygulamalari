@@ -26,5 +26,16 @@ public class MarketManager {
 			return null;
 		}
 	}
+	public boolean fiyatGuncelle(int index, double yeniFiyat) {
+        if (index >= 0 && index < urunler.size()) {
+            Urun urun = urunler.get(index);
+            
+            
+            urun.setFiyat(yeniFiyat); 
+            
+            return true; 
+        }
+        return false; 
+    }
 	
 }

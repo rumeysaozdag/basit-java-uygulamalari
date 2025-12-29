@@ -18,7 +18,7 @@ public class MarketApp {
 		System.out.println("===  Profesyonel Market Sistemi ===");
 		MarketManager yonetici = new MarketManager();
 		while(devamEdiyor) {
-			System.out.println("\n1. Listele | 2. Ekle | 3. Çıkar | 4. Çıkış");
+			System.out.println("\n1. Listele | 2. Ekle | 3. Çıkar | 4. Fiyat Güncelle | 5. Çıkar ");
 			System.out.print("Seçiminiz: ");
 			int secim = scan.nextInt();
 			scan.nextLine(); //Enter hatasını temizliyor
@@ -75,6 +75,32 @@ public class MarketApp {
 			
 			
 			else if (secim==4) {
+				
+				System.out.println("--- Fiyat Güncelleme ---");
+				ArrayList<Urun> liste = yonetici.listeyiGetir();
+                for(int i=0; i<liste.size(); i++) {
+                    System.out.println(i + ". " + liste.get(i));
+                }
+                
+                System.out.print("Hangi ürünün fiyatı değişecek (Sıra No): ");
+                int guncellenecekIndex = scan.nextInt();
+                
+                System.out.print("Yeni Fiyat: ");
+                double yeniFiyat = scan.nextDouble();
+                scan.nextLine();
+                
+                
+                boolean sonuc = yonetici.fiyatGuncelle(guncellenecekIndex, yeniFiyat);
+                
+                if(sonuc) {
+                	System.out.println("✅ Fiyat başarıyla güncellendi!");
+                }else {
+                	System.out.println("⚠️ Hata: Yanlış ürün numarası seçtiniz.");
+                }
+				
+				
+			}
+			else if(secim==5) {
 				devamEdiyor = false;
 				System.out.println("Güle güle...");
 			}
