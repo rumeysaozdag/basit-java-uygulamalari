@@ -25,7 +25,7 @@ public class Urun {
 	
 	public void setFiyat(double yeniFiyat) {
 		if(yeniFiyat<0) {
-			System.out.println("⚠️ HATA: Fiyat negatif olamaz! 0 olarak ayarlandı.");
+			System.out.println(" HATA: Fiyat negatif olamaz! 0 olarak ayarlandı.");
 			
 		}else {
 			this.fiyat = yeniFiyat;

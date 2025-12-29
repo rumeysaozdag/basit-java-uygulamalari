@@ -6,9 +6,9 @@ public class MarketManager {
 
 	private ArrayList<Urun> urunler = new ArrayList<>();
 	
-	public void urunEkle(String ad, double fiyat) {
-		Urun yeniUrun = new Urun(ad, fiyat);
-		urunler.add(yeniUrun);
+	public void urunEkle(Urun urun) {
+		
+		urunler.add(urun);
 	}
 	
 	public ArrayList<Urun> listeyiGetir(){

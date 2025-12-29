@@ -37,16 +37,51 @@ public class MarketApp {
 			}
 			
 			else if(secim==2) {
-				System.out.print("Ürün adı: ");
-				String ad = scan.nextLine();
-				
-				System.out.print("Fiyatı (Örn: 25,50): ");
-                double fiyat = scan.nextDouble();
-                scan.nextLine(); // DİKKAT: Sayıdan sonra yazıya geçerken bunu koymazsan hata verir!
+				System.out.println("--- Ürün Türü Seçin ---");
+                System.out.println("1. Gıda (SKT var)");
+                System.out.println("2. Elektronik (Garanti var)");
+                System.out.println("3. Standart Ürün");
+                System.out.print("Seçiminiz: ");
+                int tur = scan.nextInt();
+                scan.nextLine(); 
+
                 
-                // Yöneticiye hem adı hem fiyatı veriyoruz
-                yonetici.urunEkle(ad, fiyat);
-                System.out.println("✅ " + ad + " rafa koyuldu.");
+                System.out.print("Ürün Adı: ");
+                String ad = scan.nextLine();
+                
+                System.out.print("Fiyatı: ");
+                double fiyat = scan.nextDouble();
+                scan.nextLine(); 
+
+                if (tur == 1) {
+                   
+                    System.out.print("Son Kullanma Tarihi (Örn: 2025): ");
+                    String skt = scan.nextLine();
+                    
+                    
+                    Gida yeniGida = new Gida(ad, fiyat, skt);
+                    
+                   
+                    yonetici.urunEkle(yeniGida); 
+                    System.out.println(" Gıda reyonuna eklendi: " + ad);
+                    
+                } else if (tur == 2) {
+                    
+                    System.out.print("Garanti Süresi (Ay): ");
+                    int garanti = scan.nextInt();
+                    scan.nextLine();
+                    
+                    Elektronik yeniElektronik = new Elektronik(ad, fiyat, garanti);
+                    
+                    yonetici.urunEkle(yeniElektronik);
+                    System.out.println(" Elektronik reyonuna eklendi: " + ad);
+                    
+                } else {
+                    
+                    Urun yeniUrun = new Urun(ad, fiyat);
+                    yonetici.urunEkle(yeniUrun);
+                    System.out.println(" Standart rafa eklendi: " + ad);
+                }
 			}
 			
 			else if (secim==3) {
@@ -66,9 +101,9 @@ public class MarketApp {
 				String sonuc = yonetici.urunSil(silinecekIndex);
 				
 				if (sonuc != null) {
-                    System.out.println("❌ " + sonuc + " çöpe atıldı.");
+                    System.out.println(sonuc + " çöpe atıldı.");
                 } else {
-                    System.out.println("⚠️ Geçersiz numara!");
+                    System.out.println(" Geçersiz numara!");
                 }
             }
 				
@@ -93,9 +128,9 @@ public class MarketApp {
                 boolean sonuc = yonetici.fiyatGuncelle(guncellenecekIndex, yeniFiyat);
                 
                 if(sonuc) {
-                	System.out.println("✅ Fiyat başarıyla güncellendi!");
+                	System.out.println(" Fiyat başarıyla güncellendi!");
                 }else {
-                	System.out.println("⚠️ Hata: Yanlış ürün numarası seçtiniz.");
+                	System.out.println(" Hata: Yanlış ürün numarası seçtiniz.");
                 }
 				
 				
